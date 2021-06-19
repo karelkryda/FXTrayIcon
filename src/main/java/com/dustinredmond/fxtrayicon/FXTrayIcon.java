@@ -291,10 +291,6 @@ public class FXTrayIcon {
     @API
     public void addMenuItem(javafx.scene.control.MenuItem menuItem) {
         EventQueue.invokeLater(() -> {
-            if (menuItem instanceof Menu) {
-                addMenu((Menu) menuItem);
-                return;
-            }
             if (isNotUnique(menuItem)) {
                 throw new UnsupportedOperationException(
                         "Menu Item labels must be unique.");
@@ -570,7 +566,7 @@ public class FXTrayIcon {
      * Adds a JavaFX Menu to the TrayIcon's PopupMenu
      * @param menu A JavaFX Menu
      */
-    private void addMenu(Menu menu) {
+    public void addMenu(Menu menu) {
         EventQueue.invokeLater(() -> {
             java.awt.Menu awtMenu = new java.awt.Menu(menu.getText());
             menu.getItems().forEach(subItem ->
